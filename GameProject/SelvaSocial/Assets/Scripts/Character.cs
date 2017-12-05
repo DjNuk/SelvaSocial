@@ -43,18 +43,12 @@ public class Character : MonoBehaviour
         live.text = "" + hp;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "HurtBox")
-            ReceiveDamage(other.GetComponentInParent<Character>().currentAtack);
-    }
-
-    public virtual void NormalAbility (Transform target)
+    public virtual void NormalAbility (Character target)
     {
 
     }
 
-    public virtual void ChargeAbility (Transform target)
+    public virtual void ChargeAbility (Character target)
     {
 
     }
@@ -66,6 +60,8 @@ public class Character : MonoBehaviour
 
     public virtual void ReceiveDamage (int damage)
     {
+        controller.SetBool("Hit", true);
+
         int original = damage;
         if (defUp)
             damage = damage - (int)(original * 0.4f);
@@ -91,8 +87,9 @@ public class Character : MonoBehaviour
                 StartCoroutine("Stun", 2);
             else
                 StartCoroutine("Stun", 4);
-
         }
+
+        controller.SetBool("Hit", false);
     }
 
     public virtual Transform GetTransform()

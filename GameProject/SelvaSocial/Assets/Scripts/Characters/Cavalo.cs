@@ -13,31 +13,30 @@ public class Cavalo : Character
             HurtBoxs[0].gameObject.SetActive(false);
     }
 
-    public override void NormalAbility(Transform target)
+    public override void NormalAbility(Character target)
     {
         if (acting)
             return;
 
         acting = true;
 
-        transform.position = new Vector3(target.position.x + 0.8f, target.position.y, target.position.z);
         controller.SetBool("Atack",true);
         HurtBoxs[0].SetActive(true);
-        currentAtack = 15;
+        target.ReceiveDamage(15);
 
         StartCoroutine("AbilityTime", "Atack");
     }
 
-    public override void ChargeAbility(Transform target)
+    public override void ChargeAbility(Character target)
     {
         if (acting)
             return;
 
         acting = true;
+        
 
-        transform.position = new Vector3(target.position.x + 0.8f, target.position.y, target.position.z);
         controller.SetBool("Charge", true);
-        target.gameObject.GetComponent<Character>().DefDown();
+        target.DefDown();
 
         StartCoroutine("AbilityTime", "Charge");
     }

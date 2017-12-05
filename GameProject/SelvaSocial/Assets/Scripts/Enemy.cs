@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     Player enemys;
 
-    public Transform target;
+    public Character target;
 
     List<Vector3> playerMovements = new List<Vector3>();
     int actionPoints = 10;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
                     case 1:
                         if (members[0].normalAP <= actionPoints && !members[0].stun)
                         {
-                            members[0].NormalAbility(enemys.members[0].transform);
+                            members[0].NormalAbility(enemys.members[0]);
                             actionPoints = actionPoints - members[0].normalAP;
                             if (actionPoints + members[0].normalAP == 10)
                                 StartCoroutine("ChargePoints");
@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
                     case 2:
                         if (members[0].chargeAP <= actionPoints && !members[0].stun)
                         {
-                            members[0].ChargeAbility(enemys.members[0].transform);
+                            members[0].ChargeAbility(enemys.members[0]);
                             actionPoints = actionPoints - members[0].chargeAP;
                             if (actionPoints + members[0].chargeAP == 10)
                                 StartCoroutine("ChargePoints");
@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
         {
             if (playerMovements[i].x == index && playerMovements[i].y == actionPoints)
             {
-                target = enemys.members[(int)playerMovements[i].z].GetTransform();
+                target = enemys.members[(int)playerMovements[i].z];
                 Counter();
                 break;
             }

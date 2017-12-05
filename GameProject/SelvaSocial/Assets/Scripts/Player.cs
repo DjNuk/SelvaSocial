@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject sprite;
 
-    public Transform target;
+    public Character target;
     int enemyIndex = 0;
 
     int actionPoints = 10;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
         if (hAxis <= -0.5f)
         {
-            target = c[0].GetTransform();
+            target = c[0];
             Enemy.select(0, actionPoints);
             enemyIndex = 0;
         }
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         {
             if (c.Length >= 2)
             {
-                target = c[1].GetTransform();
+                target = c[1];
                 Enemy.select(1, actionPoints);
                 enemyIndex = 1;
             }
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         {
             if (c.Length >= 4)
             {
-                target = c[4].GetTransform();
+                target = c[4];
                 Enemy.select(4, actionPoints);
                 enemyIndex = 2;
             }
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         {
             if (c.Length >= 2)
             {
-                target = c[2].GetTransform();
+                target = c[2];
                 Enemy.select(2, actionPoints);
                 enemyIndex = 3;
             }

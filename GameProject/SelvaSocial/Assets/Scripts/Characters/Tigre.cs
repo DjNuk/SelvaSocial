@@ -10,12 +10,12 @@ public class Tigre : Character
 
     }
 
-    public override void NormalAbility(Transform target)
+    public override void NormalAbility(Character target)
     {
         Debug.Log("Atack");
     }
 
-    public override void ChargeAbility(Transform target)
+    public override void ChargeAbility(Character target)
     {
         Debug.Log("CAtack");
     }

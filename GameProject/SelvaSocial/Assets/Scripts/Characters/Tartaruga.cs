@@ -14,22 +14,21 @@ public class Tartaruga : Character
         }
     }
 
-    public override void NormalAbility(Transform target)
+    public override void NormalAbility(Character target)
     {
         if (acting)
             return;
 
         acting = true;
-
-        transform.position = new Vector3(target.position.x - 0.5f, target.position.y, target.position.z);
+        
         controller.SetBool("Atack", true);
         HurtBoxs[0].gameObject.SetActive(true);
-        currentAtack = 20;
+        target.ReceiveDamage(20); 
 
         StartCoroutine("AbilityTime", "Atack");
     }
 
-    public override void ChargeAbility(Transform target)
+    public override void ChargeAbility(Character target)
     {
         if (acting)
             return;
@@ -38,7 +37,7 @@ public class Tartaruga : Character
 
         controller.SetBool("Charge", true);
         HurtBoxs[1].SetActive(true);
-        currentAtack = 30;
+        target.ReceiveDamage(30);
 
         StartCoroutine("AbilityTime", "Charge");
     }
