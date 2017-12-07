@@ -61,6 +61,7 @@ public class Character : MonoBehaviour
     public virtual void ReceiveDamage (int damage)
     {
         controller.SetBool("Hit", true);
+        StartCoroutine("AbilityTime", "Hit");
 
         int original = damage;
         if (defUp)
@@ -77,7 +78,7 @@ public class Character : MonoBehaviour
         if (gameObject.GetComponentInParent<Enemy>())
         {
             if (gameObject.GetComponentInParent<Enemy>().target == null)
-                StartCoroutine("Stun", 5);
+                StartCoroutine("Stun", 2);
             else
                 StartCoroutine("Stun", 4);
         }
@@ -88,8 +89,6 @@ public class Character : MonoBehaviour
             else
                 StartCoroutine("Stun", 4);
         }
-
-        controller.SetBool("Hit", false);
     }
 
     public virtual Transform GetTransform()
@@ -114,8 +113,6 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(0.8f % controller.GetCurrentAnimatorStateInfo(0).length) ;
 
         controller.SetBool(name, false);
-        transform.position = original;
-        currentAtack = 0;
         acting = false;
     }
 
@@ -127,6 +124,7 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         stun = false;
+        controller.SetBool("Hit", false);
         sprites[2].SetActive(false);
     }
 
