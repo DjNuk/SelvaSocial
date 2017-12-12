@@ -78,6 +78,8 @@ public class Player : MonoBehaviour
                 if (!members[0].acting && !members[0].stun)
                 {
                     time++;
+                    if (time > 50)
+                        members[0].glow.SetActive(true);
                 }
                 else
                     time = 0;
@@ -161,6 +163,7 @@ public class Player : MonoBehaviour
                 UsePoints(members[character].chargeAP);
 
                 target = null;
+                members[0].glow.SetActive(false);
             }
         }
         time = 0;

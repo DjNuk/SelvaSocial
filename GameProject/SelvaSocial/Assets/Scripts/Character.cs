@@ -30,6 +30,7 @@ public class Character : MonoBehaviour
     public GameObject[] sprites;
 
     public Text live;
+    public GameObject glow;
 
     public Character ()
     {
