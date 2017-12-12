@@ -73,7 +73,7 @@ public class Character : MonoBehaviour
         live.text = "" + hp;
 
         if (hp <= 0)
-            SceneManager.LoadScene(0);
+            StartCoroutine("Dead");
 
         if (gameObject.GetComponentInParent<Enemy>())
         {
@@ -148,5 +148,14 @@ public class Character : MonoBehaviour
 
         defDown = false;
         sprites[1].SetActive(false);
+    }
+
+    IEnumerator Dead()
+    {
+        controller.SetBool("Dead", true);
+
+        yield return new WaitForSeconds(4);
+
+        SceneManager.LoadScene(0);
     }
 }
