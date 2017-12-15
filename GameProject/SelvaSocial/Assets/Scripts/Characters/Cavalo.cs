@@ -25,6 +25,7 @@ public class Cavalo : Character
         target.ReceiveDamage(15);
 
         StartCoroutine("AbilityTime", "Atack");
+        source.PlayOneShot(ap1Sound);
     }
 
     public override void ChargeAbility(Character target)
@@ -39,6 +40,7 @@ public class Cavalo : Character
         target.DefDown();
 
         StartCoroutine("AbilityTime", "Charge");
+        source.PlayOneShot(ap2Sound);
     }
 
     public override void SupportAbility()
@@ -51,5 +53,6 @@ public class Cavalo : Character
         controller.SetBool("Suport", true);
         gameObject.GetComponentInParent<Player>().SpeedUp();
         StartCoroutine("AbilityTime", "Suport");
+        source.PlayOneShot(ap3Sound);
     }
 }

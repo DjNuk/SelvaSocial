@@ -24,6 +24,12 @@ public class Character : MonoBehaviour
     public Vector3 original = Vector3.zero;
 
     public Animator controller;
+    public AudioSource source;
+
+    public AudioClip ap1Sound;
+    public AudioClip ap2Sound;
+    public AudioClip ap3Sound;
+
     public GameObject[] HurtBoxs;
     public GameObject highlight;
 
@@ -41,6 +47,7 @@ public class Character : MonoBehaviour
     {
         original = transform.position;
         controller = transform.GetComponent<Animator>();
+        source = transform.GetComponent<AudioSource>();
         live.text = "" + hp;
     }
 
@@ -157,6 +164,10 @@ public class Character : MonoBehaviour
 
         yield return new WaitForSeconds(4);
 
-        SceneManager.LoadScene(0);
+        Player player = transform.root.GetComponent<Player>();
+        if (player == null)
+            SceneManager.LoadScene(0);
+        else
+            SceneManager.LoadScene(3);
     }
 }

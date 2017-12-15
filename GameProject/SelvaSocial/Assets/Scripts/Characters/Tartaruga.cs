@@ -26,6 +26,7 @@ public class Tartaruga : Character
         target.ReceiveDamage(20); 
 
         StartCoroutine("AbilityTime", "Atack");
+        source.PlayOneShot(ap1Sound);
     }
 
     public override void ChargeAbility(Character target)
@@ -40,6 +41,7 @@ public class Tartaruga : Character
         target.ReceiveDamage(30);
 
         StartCoroutine("AbilityTime", "Charge");
+        source.PlayOneShot(ap2Sound);
     }
 
     public override void SupportAbility()
@@ -52,5 +54,6 @@ public class Tartaruga : Character
         controller.SetBool("Suport", true);
         DefUp();
         StartCoroutine("AbilityTime", "Suport");
+        source.PlayOneShot(ap3Sound);
     }
 }
